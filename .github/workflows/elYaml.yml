@@ -23,7 +23,7 @@ jobs:
 
       - name: Instalar dependencias de servicio uno
         run: |
-          cd servicios_uno
+          cd servicio_uno
           npm install
 
       - name: Ejecutar tests de servicio uno
@@ -41,7 +41,7 @@ jobs:
 
       - name: Push de la imagen Docker de servicio uno
         run: |
-          cd servicios_uno
+          cd servicio_uno
           docker push ${secrets.DOCKER_USERNAME }/servicio_uno:latest
 
       - name: Desplegar en Fly.io para servicio uno
