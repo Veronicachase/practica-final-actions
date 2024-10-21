@@ -1,0 +1,93 @@
+
+name: Mis servicios
+
+on:
+  push:
+    branches: 
+      - deploy-gitactions
+  pull_request: 
+    branches: 
+      - deploy-gitactions
+
+jobs:
+  servicio_uno:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v2
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Instalar dependencias de servicio uno
+        run: |
+          cd servicios_uno
+          npm install
+
+      - name: Ejecutar tests de servicio uno
+        run: |
+          cd servicios_uno
+          npm run test
+
+      - name: Construir imagen Docker para servicio uno
+        run: |
+          cd servicios_uno
+          docker build -t ${ secrets.DOCKER_USERNAME }/servicio_uno:latest .
+
+      - name: Login en Docker Hub
+        run: echo "${ secrets.DOCKER_PASSWORD }" | docker login -u "${ secrets.DOCKER_USERNAME }" --password-stdin
+
+      - name: Push de la imagen Docker de servicio uno
+        run: |
+          cd servicios_uno
+          docker push ${secrets.DOCKER_USERNAME }/servicio_uno:latest
+
+      - name: Desplegar en Fly.io para servicio uno
+        uses: superfly/flyctl-actions@1.1
+        with:
+          args: "deploy --remote-only"
+        env:
+          FLY_API_TOKEN: ${ secrets.FLYIO_NEW_TOKEN}
+
+  servicio_dos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v2
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Instalar dependencias de servicio dos
+        run: |
+          cd servicios_dos
+          npm install
+
+      - name: Ejecutar tests de servicio dos
+        run: |
+          cd servicios_dos
+          npm run test
+
+      - name: Construir imagen Docker para servicio dos
+        run: |
+          cd servicios_dos
+          docker build -t ${ secrets.DOCKERHUB_USERNAME }/servicio_dos:latest .
+
+      - name: Login en Docker Hub
+        run: echo "${ secrets.DOCKER_PASSWORD }" | docker login -u "${secrets.DOCKER_USERNAME}" --password-stdin
+
+      - name: Push de la imagen Docker de servicio dos
+        run: |
+          cd servicios_dos
+          docker push ${ secrets.DOCKER_USERNAME }/servicio_dos:latest
+
+      - name: Desplegar en Fly.io para servicio dos
+        uses: superfly/flyctl-actions@1.1
+        with:
+          args: "deploy --remote-only"
+        env:
+          FLY_API_TOKEN: ${secrets.FLYIO_NEW_TOKEN }
