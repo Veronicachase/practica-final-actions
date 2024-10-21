@@ -28,12 +28,12 @@ jobs:
 
       - name: Ejecutar tests de servicio uno
         run: |
-          cd servicios_uno
+          cd servicio_uno
           npm run test
 
       - name: Construir imagen Docker para servicio uno
         run: |
-          cd servicios_uno
+          cd servicio_uno
           docker build -t ${ secrets.DOCKER_USERNAME }/servicio_uno:latest .
 
       - name: Login en Docker Hub
@@ -64,17 +64,17 @@ jobs:
 
       - name: Instalar dependencias de servicio dos
         run: |
-          cd servicios_dos
+          cd servicio_dos
           npm install
 
       - name: Ejecutar tests de servicio dos
         run: |
-          cd servicios_dos
+          cd servicio_dos
           npm run test
 
       - name: Construir imagen Docker para servicio dos
         run: |
-          cd servicios_dos
+          cd servicio_dos
           docker build -t ${ secrets.DOCKERHUB_USERNAME }/servicio_dos:latest .
 
       - name: Login en Docker Hub
@@ -82,7 +82,7 @@ jobs:
 
       - name: Push de la imagen Docker de servicio dos
         run: |
-          cd servicios_dos
+          cd servicio_dos
           docker push ${ secrets.DOCKER_USERNAME }/servicio_dos:latest
 
       - name: Desplegar en Fly.io para servicio dos
