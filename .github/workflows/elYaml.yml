@@ -29,7 +29,7 @@ jobs:
       - name: Ejecutar tests de servicio uno
         run: |
           cd servicio_uno
-          npm run test
+          npm  test
 
       - name: Construir imagen Docker para servicio uno
         run: |
@@ -70,7 +70,7 @@ jobs:
       - name: Ejecutar tests de servicio dos
         run: |
           cd servicio_dos
-          npm run test
+          npm  test
 
       - name: Construir imagen Docker para servicio dos
         run: |
