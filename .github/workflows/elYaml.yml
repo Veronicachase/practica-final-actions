@@ -24,7 +24,7 @@ jobs:
       - name: Instalar dependencias de servicio uno
         run: |
           cd servicio_uno
-          npm install
+          npm ci
 
       - name: Ejecutar tests de servicio uno
         run: |
@@ -65,7 +65,7 @@ jobs:
       - name: Instalar dependencias de servicio dos
         run: |
           cd servicio_dos
-          npm install
+          npm ci
 
       - name: Ejecutar tests de servicio dos
         run: |
