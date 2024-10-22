@@ -15,7 +15,7 @@ primary_region = 'mad'
   processes = ['app']
 
 [build]
-  builder = "docker-compose"
+  builder = "docker"
 
 [[vm]]
   memory = '1gb'

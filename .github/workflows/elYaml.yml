@@ -90,3 +90,6 @@ jobs:
           args: "deploy --remote-only"
         env:
           FLY_API_TOKEN: ${{ secrets.FLYIO_NEW_TOKEN }}
+      - name: Despliegue exitoso
+        if: success()
+        run: echo "Todo fue exitoso, desplegando la aplicación"
