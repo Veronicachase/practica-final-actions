@@ -33,7 +33,7 @@ jobs:
       - name: Construir imagen Docker para servicio uno
         run: |
           cd servicio_uno
-          docker build -t chase.veronica@gmail.com/servicio_uno:  .
+          docker build -t /servicio_uno:  .
 
       - name: Login en Docker Hub
         run: echo "Anadrian123$" | docker login -u "chase.veronica@gmail.com" --password-stdin
