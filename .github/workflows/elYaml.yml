@@ -43,10 +43,9 @@ jobs:
           cd servicio_uno
           docker push ${{ secrets.DOCKER_USERNAME }}/servicio_uno:latest
 
-      - name: Desplegar en Fly.io para servicio uno
-        uses: superfly/flyctl-actions@1.1
-        with:
-          args: "deploy --remote-only"
+      - name: Desplegar en Fly.io para servicio uno 
+        run: fly deploy --config docker-compose.yml
+       
         env:
           FLY_API_TOKEN: ${{ secrets.FLYIO_NEW_TOKEN }}
 
@@ -84,7 +83,7 @@ jobs:
           cd servicio_dos
           docker push ${{ secrets.DOCKER_USERNAME }}/servicio_dos:latest
 
-      - name: Desplegar en Fly.io para servicio dos
+      - name: Desplegar en Fly.io para servicio dos 
         uses: superfly/flyctl-actions@1.1
         with:
           args: "deploy --remote-only"
