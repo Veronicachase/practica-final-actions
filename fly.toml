@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for practica-final-dry-resonance-2550 on 2024-10-22T14:00:05+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'practica-final'
+primary_region = 'mad'
+
+[http_service]
+  internal_port = 5000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[build]
+  builder = "docker-compose"
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1

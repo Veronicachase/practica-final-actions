@@ -1,0 +1,21 @@
+version: '3'
+services:
+  servicio_uno:
+    build: ./servicio_uno
+    container_name: servicio_uno
+    networks:
+      - servicios
+    ports:
+      - "8080:5000"
+
+  servicio_dos:
+    build: ./servicio_dos  
+    container_name: servicio_dos  
+    networks:
+      - servicios
+    ports:
+      - "8081:5000"
+
+networks:
+  servicios:
+    driver: bridge
