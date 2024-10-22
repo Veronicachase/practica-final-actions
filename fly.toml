@@ -13,7 +13,8 @@ primary_region = 'mad'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
-
+[build]
+  builder = "docker"
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
