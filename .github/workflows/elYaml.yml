@@ -33,15 +33,15 @@ jobs:
       - name: Construir imagen Docker para servicio uno
         run: |
           cd servicio_uno
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/servicio_uno:latest .
+          docker build -t chase.veronica@gmail.com/servicio_uno:  .
 
       - name: Login en Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        run: echo "Anadrian123$" | docker login -u "chase.veronica@gmail.com" --password-stdin
 
       - name: Push de la imagen Docker de servicio uno
         run: |
           cd servicio_uno
-          docker push ${{ secrets.DOCKER_USERNAME }}/servicio_uno:latest
+          docker push chase.veronica@gmail.com/servicio_uno:
 
       - name: Desplegar en Fly.io para servicio uno
         uses: superfly/flyctl-actions@1.1
