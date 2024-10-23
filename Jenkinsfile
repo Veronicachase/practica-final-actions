@@ -9,12 +9,11 @@ pipeline {
         nodejs "nodejs-18"
     }
  
-    triggers{
+    triggers {
         githubPush()
     }
     
     stages {
- 
         stage('Install Fly.io') {
             steps {
                 echo 'Installing Fly.io...'
@@ -31,20 +30,22 @@ pipeline {
             }
         }
         
-        stage('Install dependencies'){
+        stage('Install dependencies') {
             steps {
                 echo 'Installing...'
                 sh 'npm install'
             }
         }
-        stage('Run test'){
-            steps{
+        
+        stage('Run test') {
+            steps {
                 echo 'Running test'
                 sh 'npm run test'
             }
         }
-        stage('Pintar credencial'){
-            steps{
+
+        stage('Pintar credencial') {
+            steps {
                 echo 'Hola esta es mi credencial: $FLY_API_TOKEN'
             }
         }
@@ -56,7 +57,7 @@ pipeline {
             }
         }
     }
-}
+    
     post {
         success {
             echo 'Todo fue bien'
