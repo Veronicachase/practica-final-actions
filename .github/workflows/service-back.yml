@@ -1,0 +1,40 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-v1-service
+  labels:
+    app: back
+    version: v1
+spec:
+  type: NodePort
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+      name: http
+  selector:
+    app: back
+    version: v1
+   
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-v2-service
+  labels:
+    app: back
+    version: v2
+spec:
+  type: NodePort
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+      name: http
+  selector:
+    app: back
+    version: v2
+
+---

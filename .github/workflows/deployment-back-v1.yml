@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-v1-deployment
+  labels:
+    app: back
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: back
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: back
+        version: v1
+    spec:
+      containers:
+        - name: back
+          image: your-docker-username/back:v1
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              memory: "64Mi"
+            limits:
+              memory: "128Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 60
+            periodSeconds: 10
+
+---
+  apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-v2-deployment
+  labels:
+    app: back
+    version: v2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: back
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: back
+        version: v2
+    spec:
+      containers:
+        - name: back
+          image: veronicachase/back:v2 
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              memory: "64Mi"
+            limits:
+              memory: "128Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 60
+            periodSeconds: 10
