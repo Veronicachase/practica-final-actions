@@ -1,0 +1,22 @@
+version: '3'
+services:
+  front:
+    build: ./front
+
+    networks:
+      - Proyecto Completo
+    ports:
+      - "80:80"
+
+  back:
+    build: ./back
+
+    networks:
+      - Proyecto Completo
+
+    ports:
+      - "5000:5000"  
+   
+networks:
+  Proyecto Completo:
+    driver: bridge

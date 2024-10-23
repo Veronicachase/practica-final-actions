@@ -1,0 +1,64 @@
+name: Mi proyecto
+
+on:
+  push:
+    branches: 
+      - deploy-docker
+  pull_request: 
+    branches: 
+      - deploy-docker
+
+jobs:
+  back:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v2
+
+      - name: Configurar Node.js para back
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Instalar dependencias de back
+        run: |
+          cd back
+          npm ci
+
+      - name: Login en Docker Hub para back
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Construir y Push de la imagen Docker para back
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/back:latest ./back
+          docker push ${{ secrets.DOCKER_USERNAME }}/back:latest
+
+  front:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v2
+
+      - name: Configurar Node.js para front
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Instalar dependencias de front
+        run: |
+          cd front
+          npm ci
+
+      - name: Login en Docker Hub para front
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Construir y Push de la imagen Docker para front
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/front:latest ./front
+          docker push ${{ secrets.DOCKER_USERNAME }}/front:latest
