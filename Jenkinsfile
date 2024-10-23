@@ -24,7 +24,7 @@ pipeline {
                         export FLYCTL_INSTALL="/var/jenkins_home/.fly"
                         export PATH="$FLYCTL_INSTALL/bin:$PATH"
                         # Autenticarse con Fly.io
-                        fly auth token $FLY_API_TOKEN
+                        fly tokens create $FLY_API_TOKEN
                     '''
                 }
             }
@@ -40,7 +40,7 @@ pipeline {
         stage('Run test') {
             steps {
                 echo 'Running test'
-                sh 'npm  test'
+                sh 'npm run test'
             }
         }
 
