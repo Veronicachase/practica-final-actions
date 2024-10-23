@@ -2,10 +2,10 @@ const request = require('supertest');
 const app = require('../app');
 
 describe('API Tests', () => {
-    it('should return Página servicio_uno! on GET /', async () => {
+    it('should return Aplicación de gitActions! on GET /', async () => {
         const response = await request(app).get('/');
         expect(response.status).toBe(200);
-        expect(response.body.message).toBe('Página servicio_uno!');
+        expect(response.body.message).toBe('Aplicación de gitActions!');
     });
 
     it('should echo back the posted data on POST /echo', async () => {
