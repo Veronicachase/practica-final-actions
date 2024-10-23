@@ -11,14 +11,12 @@ COPY . .
 
 RUN npm run build
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+RUN echo "Contenido de la carpeta /app después del build:" && ls -la /app/dist
 
 FROM nginx:alpine
 
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-
-# Comprobando que la carpeta 'dist' se ha creado
-RUN echo "Contenido de la carpeta /app después del build:" && ls -la /app/dist
 
 EXPOSE 80
 
