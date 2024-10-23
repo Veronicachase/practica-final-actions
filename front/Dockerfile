@@ -1,6 +1,5 @@
 FROM node:16 AS builder
 
-FROM node:16
 
 WORKDIR /app
 
@@ -12,8 +11,14 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
+
+FROM nginx:alpine
+
+
+
+# Comprobando que la carpeta 'dist' se ha creado
+RUN echo "Contenido de la carpeta /app después del build:" && ls -la /app/dist
 
 EXPOSE 80
 
