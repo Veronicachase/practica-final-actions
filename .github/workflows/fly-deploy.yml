@@ -19,10 +19,7 @@ jobs:
       - name: Ejecutar tests 
         run: npm test
       
-      - name: Construir la aplicación
-        run: npm run build
-      
-
+    
   deploy:
     name: Deploy app
     runs-on: ubuntu-latest
