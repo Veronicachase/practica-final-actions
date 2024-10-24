@@ -12,6 +12,7 @@ spec:
     metadata:
       labels:
         app: front
+        version: v1
     spec:
       containers:
       - name: front-v1
