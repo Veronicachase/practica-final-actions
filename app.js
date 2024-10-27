@@ -7,7 +7,7 @@ app.use(cors())
 
 
 app.get('/', (req, res) => {
-    res.status(200).json({ message: 'Aplicación de gitActions 2!' });
+    res.status(200).json({ message: 'Aplicación de gitActions 3!' });
 });
 
 app.post('/echo', (req, res) => {
