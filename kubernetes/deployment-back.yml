@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: back
-        image: your-docker-username/back:v1
+        image: veronichase/back:v1
         ports:
         - containerPort: 5000
         resources:
