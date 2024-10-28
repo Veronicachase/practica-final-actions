@@ -7,7 +7,7 @@ app.use(cors())
 
 
 app.get('/', (req, res) => {
-    res.status(200).json({ message: 'Página servicio_uno!' });
+    res.status(200).json({ message: 'Página servicio_uno-1!' });
 });
 
 app.post('/echo', (req, res) => {
