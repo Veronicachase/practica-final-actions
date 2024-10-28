@@ -7,7 +7,7 @@ app.use(cors())
 
 
 app.get('/', (req, res) => {
-    res.status(200).json({ message: 'Probando jenkins 5!' });
+    res.status(200).json({ message: 'Probando jenkins 6!' });
 });
 
 app.post('/echo', (req, res) => {

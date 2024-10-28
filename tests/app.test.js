@@ -2,10 +2,10 @@ const request = require('supertest');
 const app = require('../app');
 
 describe('API Tests', () => {
-    it('should return Probando jenkins 5! on GET /', async () => {
+    it('should return Probando jenkins 6! on GET /', async () => {
         const response = await request(app).get('/');
         expect(response.status).toBe(200);
-        expect(response.body.message).toBe('Probando jenkins 5!');
+        expect(response.body.message).toBe('Probando jenkins 6!');
     });
 
     it('should echo back the posted data on POST /echo', async () => {
